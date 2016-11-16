@@ -4,7 +4,7 @@ import { _ } from 'meteor/underscore';
 import Griddle from 'griddle-react';
 
 checkNpmVersions({
-  'griddle-react': '0.5.x',
+  'griddle-react': '0.6.x',
   'react-addons-pure-render-mixin': '15.x',
 }, 'utilities:meteor-griddle');
 
@@ -55,6 +55,7 @@ MeteorGriddle = React.createClass({
     // collection.
     var matchingResults = Counts.get(this.props.matchingResultsCount);
 
+    // Set limit and sort
     const options = {};
     let skip;
     if (this.props.useExternal) {
@@ -73,6 +74,7 @@ MeteorGriddle = React.createClass({
 
     let pubHandle;
 
+    // Subscribe
     if (this.props.subsManager) {
       pubHandle = this.props.subsManager.subscribe(
         this.props.publication,
@@ -87,6 +89,7 @@ MeteorGriddle = React.createClass({
       );
     }
 
+    // XXX: options does not include skip...
     const results =
       this.props.collection.find(this.state.query, options).fetch();
 
