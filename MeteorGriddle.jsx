@@ -44,6 +44,7 @@ MeteorGriddle = React.createClass({
 
   componentWillMount() {
     this.applyQuery = _.debounce((query) => {
+      this.setPage(0);
       this.setState({ query });
     }, this.props.externalFilterDebounceWait);
   },
@@ -101,6 +102,7 @@ MeteorGriddle = React.createClass({
   },
 
   resetQuery() {
+    this.setPage(0);
     this.setState({
       query: {},
     });
